@@ -35,6 +35,5 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
-  spec.add_dependency 'mysql', '~> 5.0'
-
+  spec.add_development_dependency 'minitest', '~> 2.1.0' 
 end

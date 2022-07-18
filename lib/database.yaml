@@ -1,0 +1,6 @@
+# database.yaml
+adapter: 'mysql2',
+host: 'localhost',
+username: 'root_user',
+password: 'P@s$w0rd123!',
+database: 'fitment_group;'

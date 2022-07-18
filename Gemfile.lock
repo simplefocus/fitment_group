@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    fitment_group (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.16.2)
+    mysql2 (0.5.4)
+    rake (13.0.6)
+
+PLATFORMS
+  x86_64-darwin-19
+
+DEPENDENCIES
+  fitment_group!
+  minitest (~> 5.0)
+  mysql2 (~> 0.5.4)
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.3.14
