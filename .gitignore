@@ -6,9 +6,4 @@
 /pkg/
 /spec/reports/
 /tmp/
-Chassis.csv
-ChassisModels.csv
-MinusSizes.csv
-PlusSizes.csv
-tirewheel-smart-submodel-vehicles.csv
 *.gem
