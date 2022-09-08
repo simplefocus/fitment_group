@@ -1,29 +1,26 @@
 # FitmentGroup
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fitment_group`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a script used by Feed Factory to add the FMKs to each product in Wheel Hippo store.
 
-TODO: Delete this and the text above, and describe your gem
+A FMK is a 'car id', that, when added to a product will mean that the product fits a specific car. In this way we can execute a shopify search based on products that fits a specific car.
 
-## Installation
+This script will receive some product measures and then iterate over a list of cars and retrieve back a list of FMKs that are a good fit for the product.
 
-Install the gem and add to the application's Gemfile by executing:
+The script call should be done as follow:
 
-    $ bundle add fitment_group
+$ fg.start("10x20","5x139.7","87","2900","-24")
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+The measures represents the following product measures, in order:
+wheel size
+bolt pattern
+hubbore
+max wheel load
+offset
 
-    $ gem install fitment_group
+As a result, is expected for you to receive a list of FMKs:
+
+$ [68377, 71074, 72837, 90031, 70658, 71075, 112381, 168128, 60940, 66014, 76881, 114262, 61142, 66117, 71073, 64251, 76879, 113301, 76878, 66116, 71072, 61144, 66015, 112382, 126274, 83354, 87711, 89362, 82529, 95527, 115228, 115231, 76733, 93830, 97133, 134858, 134859, 115227, 76639, 76730, 89363, 117257, 76732, 74726, 87712, 93437, 93831, 96357, 76729, 82202, 127264, 97700, 186623, 97699, 115229, 116027, 86178, 95526, 97263, 117256, 123482, 132421, 145099, 165026, 186624, 60939, 61141, 66115, 70657, 84111, 91178, 176005, 176008, 192438, 176006, 176009, 176007, 188467, 176832, 188466, 192226, 192227, 193115, 193116, 177084, 177085, 177086, 186487, 186490, 186491, 189625, 189694, 194311, 194312, 194313, 200438, 200908, 205263, 205310, 205311, 205314, 208842, 208844, 208847, 208850, 208852, 209693, 210288, 217647, 217648, 217735, 220911, 220912, 189623, 200910, 208841, 208845, 208846, 208913, 210286, 217734, 217900, 189318, 189319, 206856, 209027, 210728, 226202, 207468, 225676, 208839, 208840, 208848, 208849, 217645, 217646, 220913, 220914, 208843, 208856, 208857, 210284, 177080, 186486, 194309, 216126, 216127, 217864, 217865, 225589, 177087, 186489, 194314, 205312, 217649, 165027, 189624, 200909, 201281, 207466, 208855, 209162, 210285, 210287, 217642, 189122, 207809, 207810, 210282, 210283, 123483, 132422, 145100, 123485, 145101, 183406, 149330, 149331, 132426, 125872, 132425, 145102, 165029, 216125, 217866, 177081, 177088, 186485, 186488, 194310, 194315, 205313, 205315, 217643, 220910, 226603, 125873, 145103, 165030, 125874, 165031, 168133, 183407, 125875, 132428, 165239, 160646, 160647, 188465, 132427, 145104, 168134, 222110]
 
 ## Usage
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fitment_group.
+You can refer to the test file to understand exactly how to call the script and everything you should do before calling it.
