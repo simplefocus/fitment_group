@@ -20,6 +20,10 @@ class LoadFtpDataSource
         return @plus_sizes
     end
 
+    def lifted_kit_data
+        return @lifted_kits
+    end
+
     def minus_sizes_data
         return @minus_sizes
     end
@@ -27,22 +31,28 @@ class LoadFtpDataSource
     private
     def load_ftp_data!
         Net::FTP.open('ftp.fitmentgroup.com') do |ftp|
-        ftp.login('wheelhippo', 'WheelHippo11W27')
-        ftp.gettextfile('Chassis.csv')
-        @chassis = File.new('Chassis.csv')
+            ftp.login('wheelhippo', 'WheelHippo11W27')
 
-        ftp.gettextfile('ChassisModels.csv')
-        @chassis_models = File.new('ChassisModels.csv')
+            ftp.chdir('LiftedApplications')
+            ftp.gettextfile('PlusSizes_LiftedOther.csv')
+            @lifted_kits = File.new('PlusSizes_LiftedOther.csv')
 
-        ftp.gettextfile('PlusSizes.csv')
-        @plus_sizes = File.new('PlusSizes.csv')
+            ftp.chdir('../FitmentData')
+            ftp.gettextfile('Chassis.csv')
+            @chassis = File.new('Chassis.csv')
 
-        ftp.gettextfile('MinusSizes.csv')
-        @minus_sizes = File.new('MinusSizes.csv')
+            ftp.gettextfile('ChassisModels.csv')
+            @chassis_models = File.new('ChassisModels.csv')
 
-        files = ftp.chdir('tireandwheel')
-        ftp.gettextfile('tirewheel-smart-submodel-vehicles.csv')
-        @cars = File.new('tirewheel-smart-submodel-vehicles.csv')
+            ftp.gettextfile('PlusSizes.csv')
+            @plus_sizes = File.new('PlusSizes.csv')
+
+            ftp.gettextfile('MinusSizes.csv')
+            @minus_sizes = File.new('MinusSizes.csv')
+
+            files = ftp.chdir('tireandwheel')
+            ftp.gettextfile('tirewheel-smart-submodel-vehicles.csv')
+            @cars = File.new('tirewheel-smart-submodel-vehicles.csv')
         end
     end 
 end

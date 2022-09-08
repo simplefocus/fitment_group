@@ -41,6 +41,30 @@ class DbTasks
         ")
 
         @client.query("
+            CREATE TABLE if not exists lifted_kits(
+                PlusSizeID VARCHAR(255), 
+                ChassisID INT NOT NULL,
+                FitmentType VARCHAR(255), 
+                FitmentNote VARCHAR(255), 
+                FrontOrRearOrBoth VARCHAR(255), 
+                WheelSize VARCHAR(255), 
+                RimDiameter VARCHAR(255), 
+                RimWidth VARCHAR(255), 
+                OffsetMin INTEGER NOT NULL, 
+                OffsetMax INTEGER NOT NULL, 
+                Tire1 VARCHAR(255), 
+                Tire2 VARCHAR(255), 
+                Tire3 VARCHAR(255), 
+                Tire4 VARCHAR(255), 
+                Tire5 VARCHAR(255), 
+                Tire6 VARCHAR(255), 
+                Tire7 VARCHAR(255), 
+                Tire8 VARCHAR(255),
+                PRIMARY KEY (ChassisID, WheelSize,OffsetMin,OffsetMax)
+           );           
+        ")
+
+        @client.query("
             CREATE TABLE if not exists chassis_models (
                 ChassisID INT NOT NULL,
                 ModelID INT NOT NULL,
@@ -193,6 +217,14 @@ class DbTasks
 
         @client.query(" LOAD DATA LOCAL INFILE '#{File.absolute_path(@fg_datasource.plus_sizes_data.path)}'
         INTO TABLE plus_sizes
+        FIELDS TERMINATED BY ','
+        ENCLOSED BY '\"'
+        LINES TERMINATED BY '\\n'
+        IGNORE 1 ROWS;")
+        @client.query("show warnings")
+
+        @client.query(" LOAD DATA LOCAL INFILE '#{File.absolute_path(@fg_datasource.lifted_kit_data.path)}'
+        INTO TABLE lifted_kits
         FIELDS TERMINATED BY ','
         ENCLOSED BY '\"'
         LINES TERMINATED BY '\\n'

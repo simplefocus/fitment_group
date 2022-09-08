@@ -64,6 +64,18 @@ class FitmentGroupLookup
         join chassis ON cars.FG_ChassisID = chassis.ChassisID
         join chassis_models ON cars.FG_ChassisID = chassis.ChassisID
         AND cars.FG_ModelID = chassis_models.ModelID
+        join lifted_kits ON cars.FG_ChassisID = lifted_kits.ChassisID
+    WHERE lifted_kits.WheelSize = '#{rim_size}'
+        AND cars.BoltPattern = '#{bolt_pattern}'
+        AND cars.Hubbore <= '#{hubbore}'
+        AND chassis.MaxWheelLoad <= '#{max_wheel_load}'
+        AND '#{offset}' between lifted_kits.OffsetMin AND lifted_kits.OffsetMax
+    UNION
+    SELECT cars.FG_FMK
+    FROM cars
+        join chassis ON cars.FG_ChassisID = chassis.ChassisID
+        join chassis_models ON cars.FG_ChassisID = chassis.ChassisID
+        AND cars.FG_ModelID = chassis_models.ModelID
         join minus_sizes ON cars.FG_ChassisID = minus_sizes.ChassisID
     WHERE minus_sizes.WheelSize = '#{rim_size}'
         AND cars.BoltPattern = '#{bolt_pattern}'
